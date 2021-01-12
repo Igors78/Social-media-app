@@ -6,9 +6,6 @@ AllCops:
     - "Guardfile"
     - "Rakefile"
     - "node_modules/**/*"
-AllCops:
-  TargetRubyVersion: 3.0.0
-  DisplayCopNames: true
 
 Layout/LineLength:
   Max: 120
