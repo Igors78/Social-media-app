@@ -30,22 +30,30 @@ gem 'jbuilder', '~> 2.5'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
-
+gem 'webpacker', '~> 5.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'rubocop-rails', '~> 2.9', '>= 2.9.1'
+gem 'rubocop-rspec', '~> 2.1'
 
 gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
 end
 
 group :test do
-  gem 'rspec'
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '~> 3.34'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
 end
 
 group :production do
