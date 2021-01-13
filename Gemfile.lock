@@ -232,7 +232,7 @@ GEM
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
 
- 
+
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
     websocket-driver (0.7.3)
