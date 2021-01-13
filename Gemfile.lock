@@ -96,6 +96,8 @@ GEM
     diff-lcs (1.4.4)
     erubi (1.10.0)
     execjs (2.7.0)
+    faker (2.15.1)
+      i18n (>= 1.6, < 2)
     ffi (1.14.2)
     ffi (1.14.2-x64-mingw32)
     globalid (0.4.2)
@@ -290,6 +292,7 @@ DEPENDENCIES
   capybara (~> 3.34)
   coffee-rails (~> 4.2)
   devise
+  faker (~> 2.15, >= 2.15.1)
   jbuilder (~> 2.5)
   listen (>= 3.0.5, < 3.2)
   pg
@@ -313,7 +316,7 @@ DEPENDENCIES
   webpacker (~> 5.0)
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.7.2p137
 
 BUNDLED WITH
    2.2.3
