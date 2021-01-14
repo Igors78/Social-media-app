@@ -5,7 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-50.times do |n|
+6.times do |n|
     name = Faker::Name.name
     email = "example-#{n + 1}@example.com"
     password = 'password'
@@ -16,7 +16,7 @@
   end
 
   # Generate microposts for a subset of users.
-users = User.order(:created_at).take(6)
+users = User.order(:created_at).take(3)
 2.times do
   content = Faker::ChuckNorris.fact
 
