@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_action :set_friendship, only: %i[create destroy]
+  before_action :set_friendship, only: %i[create_friendship destroy]
   before_action :authenticate_user!
 
   def create_friendship
@@ -12,16 +12,35 @@ class FriendshipsController < ApplicationController
         render :new
       end
     else
-      flash.notice = 'There is already a friend request pending for this user!'
+      flash.notice = 'There is already a friend request pending'
       redirect_back(fallback_location: root_path)
     end
+  end
+
+  def destroy
+    if @friendship
+      @friendship.destroy
+      flash[:success] = 'Friendship has been deleted'
+    else
+      flash[:alert] = 'Error'
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
+  def accept_request
+    @friendship = Friendship.find_by(user_id: params[:user_id],
+                                     friend_id: params[:friend_id])
+    @friendship.update(status: true)
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
   def set_friendship
-    @friendship = Friendship.find_by(user_id: params[:user_id], friend_id: current_user.id) ||
-                  Friendship.find_by(user_id: current_user.id, friend_id: params[:user_id])
+    @friendship = Friendship.find_by(user_id: params[:user_id],
+                                     friend_id: params[:friend_id]) ||
+                  Friendship.find_by(user_id: params[:friend_id],
+                                     friend_id: params[:user_id])
   end
 
   # Only allow a list of trusted parameters through.

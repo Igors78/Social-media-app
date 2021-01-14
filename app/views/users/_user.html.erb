@@ -3,6 +3,11 @@
     <span class="profile-link">
         <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         <% if current_user != user %>
+        <% if active_friends?(user) %>
+        <%= link_to 'Dismiss Friendsip', @friendship, method: :delete,
+                                data: { confirm: "You sure?" },
+                                class: "badge bg-warning"%>
+        <% else %>
         <%= link_to 'Befriend',
                              { controller: "friendships",
                                action: "create_friendship",
@@ -10,6 +15,6 @@
                                friend_id: user.id },
         class: 'badge badge-secondary' %>
         <% end %>
-
+        <% end %>
     </span>
 </li>

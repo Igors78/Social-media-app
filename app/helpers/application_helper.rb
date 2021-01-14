@@ -15,4 +15,13 @@ module ApplicationHelper
       link_to('Like!', post_likes_path(post_id: post.id), method: :post)
     end
   end
+
+  def active_friends?(friend)
+    Friendship.find_by(user_id: current_user.id,
+                       friend_id: friend.id,
+                       status: true) ||
+      Friendship.find_by(user_id: friend.id,
+                         friend_id: current_user.id,
+                         status: true)
+  end
 end
