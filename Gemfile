@@ -35,7 +35,7 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'webpacker', '~> 5.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
+gem 'solargraph', '~> 0.40.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rubocop-rails', '~> 2.9', '>= 2.9.1'
