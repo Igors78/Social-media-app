@@ -22,7 +22,7 @@ class FriendshipsController < ApplicationController
       @friendship.destroy
       flash.notice = 'Friendship has been deleted'
     else
-      flash.alert= 'Error'
+      flash.alert = 'Error'
     end
     redirect_back(fallback_location: root_path)
   end
