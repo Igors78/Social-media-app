@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :friendships, only: %i[destroy]
+  
   resources :users, only: %i[index show]
   resources :posts, only: %i[index create] do
     resources :comments, only: [:create]
@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   end
   get '/create_friendship', to: 'friendships#create_friendship'
   get '/accept_request', to: 'friendships#accept_request'
+  get '/destroy_friendship', to: 'friendships#destroy_friendship'
 end

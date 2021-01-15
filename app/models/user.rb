@@ -11,11 +11,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships, dependent: :destroy
+  has_many :friends, through: :friendships
 
   has_many :friend_requests_sent, -> { where(status: false) },
            class_name: 'Friendship'
-  has_many :requests_sent_to, through: :friend_requests_sent, source: :friend
+  has_many :requests_sent_to, through: :friend_requests_sent,
+            source: :friend
 
   has_many :friend_requests_received, -> { where(status: false) },
            class_name: 'Friendship', foreign_key: 'friend_id'

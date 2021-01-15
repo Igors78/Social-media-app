@@ -4,9 +4,12 @@
         <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
         <% if current_user != user %>
         <% if active_friends?(user) %>
-        <%= link_to 'Dismiss Friendsip', @friendship, method: :delete,
-                                data: { confirm: "You sure?" },
-                                class: "badge bg-warning"%>
+        <%= link_to 'Dismiss Friendsip',
+                              { controller: "friendships",
+                               action: "destroy_friendship",
+                               user_id: current_user.id,
+                               friend_id: user.id },
+                                class: "badge"%>
         <% else %>
         <%= link_to 'Befriend',
                              { controller: "friendships",

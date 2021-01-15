@@ -1,5 +1,5 @@
 class FriendshipsController < ApplicationController
-  before_action :set_friendship, only: %i[create_friendship destroy]
+  before_action :set_friendship, only: %i[create_friendship destroy_friendship]
   before_action :authenticate_user!
 
   def create_friendship
@@ -17,12 +17,12 @@ class FriendshipsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy_friendship
     if @friendship
       @friendship.destroy
-      flash[:success] = 'Friendship has been deleted'
+      flash.notice = 'Friendship has been deleted'
     else
-      flash[:alert] = 'Error'
+      flash.alert= 'Error'
     end
     redirect_back(fallback_location: root_path)
   end
