@@ -20,10 +20,10 @@
                 <%= menu_link_to 'All users', users_path %>
             </div>
         </div>
-        <%= render 'current_user' %>
+        <%= render 'shared/current_user' %>
     </nav>
-    <%= render 'notice' %>
-    <%= render 'alert' %>
+    <%= render 'shared/notice' %>
+    <%= render 'shared/alert' %>
     <main class="main">
         <%= yield %>
     </main>
