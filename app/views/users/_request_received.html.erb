@@ -1,11 +1,17 @@
 <% if current_user == @user && @user.friend_requests_received.any?%>
-    <% @user.friend_requests_received.each do |request| %>
-    <p>Friendship requested by:<%=  "#{request.user.name}"%></p>
-    <%= link_to "Accept request",
+<% @user.friend_requests_received.each do |request| %>
+<p>Friendship requested by:<%=  "#{request.user.name}"%></p>
+<%= link_to "Accept request",
                                 { controller: "friendships",
                                   action: "accept_request",
                                   user_id: request.user.id,
                                   friend_id: request.friend.id },
         class: 'badge badge-primary' %>
-    <% end %>
+<%= link_to "Decline request",
+                                { controller: "friendships",
+                                  action: "decline_request",
+                                  user_id: request.user.id,
+                                  friend_id: request.friend.id },
+        class: 'badge bg-danger' %>
+<% end %>
 <% end %>

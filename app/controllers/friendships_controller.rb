@@ -34,6 +34,13 @@ class FriendshipsController < ApplicationController
     redirect_back(fallback_location: root_path)
   end
 
+  def decline_request
+    @friendship = Friendship.find_by(user_id: params[:user_id],
+                                     friend_id: params[:friend_id])
+    @friendship.destroy
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def set_friendship

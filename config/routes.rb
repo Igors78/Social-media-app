@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   end
   get '/create_friendship', to: 'friendships#create_friendship'
   get '/accept_request', to: 'friendships#accept_request'
+  get '/decline_request', to: 'friendships#decline_request'
   get '/destroy_friendship', to: 'friendships#destroy_friendship'
 end
