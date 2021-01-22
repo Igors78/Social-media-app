@@ -25,6 +25,9 @@ class User < ApplicationRecord
 
   has_many :accepted_friendships, -> { where(status: true) },
            class_name: 'Friendship'
+  has_many :active_friends, through: :accepted_friendships,
+                            source: :friend
+
   # Associations
   # friendship.user => sender of request
   # friendship.friend => receiver of request
