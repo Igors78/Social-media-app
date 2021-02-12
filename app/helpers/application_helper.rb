@@ -24,4 +24,16 @@ module ApplicationHelper
                          friend_id: current_user.id,
                          status: true)
   end
+
+  def pending_friends?(friend)
+    Friendship.find_by(user_id: friend.id,
+                       friend_id: current_user.id,
+                       status: false)
+  end
+
+  def friend_requests(friend)
+    Friendship.find_by(user_id: current_user.id,
+                       friend_id: friend.id,
+                       status: false)
+  end
 end

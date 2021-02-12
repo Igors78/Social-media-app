@@ -11,6 +11,20 @@
                                user_id: current_user.id,
                                friend_id: user.id },
                                 class: "badge bg-danger"%>
+        <% elsif pending_friends?(user) %>
+        <%= link_to 'Confirm',
+                             { controller: "friendships",
+                               action: "accept_request",
+                               user_id: current_user.id,
+                               friend_id: user.id },
+        class: 'badge badge-secondary' %>
+        <% elsif friend_requests(user)%>
+        <%= link_to 'Cancel',
+                             { controller: "friendships",
+                               action: "decline_request",
+                               user_id: current_user.id,
+                               friend_id: user.id },
+        class: 'badge badge-secondary' %>
         <% else %>
         <%= link_to 'Befriend',
                              { controller: "friendships",

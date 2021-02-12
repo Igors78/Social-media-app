@@ -28,8 +28,8 @@ class FriendshipsController < ApplicationController
   end
 
   def accept_request
-    @friendship = Friendship.find_by(user_id: params[:user_id],
-                                     friend_id: params[:friend_id])
+    @friendship = Friendship.find_by(user_id: params[:friend_id],
+                                     friend_id: params[:user_id])
     @friendship.update(status: true)
     redirect_back(fallback_location: root_path)
   end
