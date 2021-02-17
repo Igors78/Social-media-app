@@ -18,6 +18,12 @@
                                user_id: current_user.id,
                                friend_id: user.id },
         class: 'badge badge-secondary' %>
+        <%= link_to 'Decline',
+                              { controller: "friendships",
+                               action: "destroy_friendship",
+                               user_id: current_user.id,
+                               friend_id: user.id },
+                                class: "badge bg-danger" %>
         <% elsif friend_requests(user)%>
         <%= link_to 'Cancel',
                              { controller: "friendships",
