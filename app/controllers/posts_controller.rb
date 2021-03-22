@@ -20,16 +20,9 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    @timeline_posts = []
-    current_user.posts.each do |post|
-      @timeline_posts << post
-    end
-    current_user.active_friends.each do |friend|
-      friend.posts.each do |post|
-        @timeline_posts << post
-      end
-    end
-    @timeline_posts
+    result = Post.where(user: current_user.friends)
+    result += current_user.posts
+    @timeline_posts ||= result.sort { |x, y| y.created_at <=> x.created_at }
   end
 
   def post_params
