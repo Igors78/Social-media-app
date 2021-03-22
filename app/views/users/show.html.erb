@@ -1,38 +1,6 @@
 <section class="user-section">
-    <h2><%= "Name: #{@user.name}" %></h2>
-    <%= render 'request_received' %>
-    <% if current_user != @user %>
-    <% if active_friends?(@user) %>
-    <%= link_to 'Dismiss Friendsip',
-                              { controller: "friendships",
-                               action: "destroy_friendship",
-                               user_id: current_user.id,
-                               friend_id: @user.id },
-                                class: "badge bg-danger"%>
-    <% elsif pending_friends?(@user) %>
-    <%= link_to 'Confirm',
-                             { controller: "friendships",
-                               action: "accept_request",
-                               user_id: current_user.id,
-                               friend_id: @user.id },
-        class: 'badge badge-secondary' %>
-    <% elsif friend_requests(@user)%>
-    <%= link_to 'Cancel',
-                             { controller: "friendships",
-                               action: "decline_request",
-                               user_id: current_user.id,
-                               friend_id: @user.id },
-        class: 'badge badge-secondary' %>
-    <% else %>
-    <%= link_to 'Befriend',
-                             { controller: "friendships",
-                               action: "create_friendship",
-                               user_id: current_user.id,
-                               friend_id: @user.id },
-        class: 'badge badge-secondary' %>
-    <% end %>
-    <% end %>
-
+    <h2 class="d-inline border"><%= "Name: #{@user.name}" %></h2>
+    <span><%= new_friendship(@user) %></span>
     <article class="timeline">
         <h3>Recent posts:</h3>
         <ul class="posts">
