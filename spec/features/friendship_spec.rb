@@ -7,7 +7,7 @@ RSpec.describe 'Friendship features', type: :request do
   end
 
   scenario 'Create and accept new friendship' do
-    visit new_user_session_path
+    visit new_user_registration_path
     fill_in 'user_email', with: 'maria@maria.com'
     fill_in 'user_password', with: '123123'
     click_button 'Log in'
@@ -20,7 +20,7 @@ RSpec.describe 'Friendship features', type: :request do
     click_link 'Sign out'
     expect(page).to have_content('You need to sign in or sign up before continuing.')
 
-    visit new_user_session_path
+    visit new_user_registration_path
     fill_in 'user_email', with: 'tadeu@tadeu.com'
     fill_in 'user_password', with: '123123'
     click_button 'Log in'
@@ -32,7 +32,7 @@ RSpec.describe 'Friendship features', type: :request do
   end
 
   scenario 'Create and reject new friendship' do
-    visit new_user_session_path
+    visit new_user_registration_path
     fill_in 'user_email', with: 'maria@maria.com'
     fill_in 'user_password', with: '123123'
     click_button 'Log in'
@@ -45,7 +45,7 @@ RSpec.describe 'Friendship features', type: :request do
     click_link 'Sign out'
     expect(page).to have_content('You need to sign in or sign up before continuing.')
 
-    visit new_user_session_path
+    visit new_user_registration_path
     fill_in 'user_email', with: 'tadeu@tadeu.com'
     fill_in 'user_password', with: '123123'
     click_button 'Log in'
