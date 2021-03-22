@@ -1,7 +1,7 @@
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @friendships = current_user.inverted_friendships
+    @friendships = current_user.inverse_friendships
   end
 
   def create
