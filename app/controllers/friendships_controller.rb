@@ -33,7 +33,7 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find(params[:id])
     @friendship.destroy
 
-    redirect_to friendships_path, notice: 'Request Cancelled!'
+    redirect_to friendships_path, notice: 'Friendship has been deleted'
   end
 
   private
