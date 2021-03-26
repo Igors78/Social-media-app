@@ -32,8 +32,8 @@
         <% end %>
     </nav>
 
-    <%= if_notice(notice) %>
-    <%= if_alert(alert) %>
+
+    <%= render :partial => "shared/noticealert" %>
     <main class="main">
         <%= yield %>
     </main>
