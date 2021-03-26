@@ -1,28 +1,36 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  subject do
-    described_class.new(name: 'James Bond')
-  end
-
-  describe 'associations' do
-    it { should have_many(:posts) }
-    it { should have_many(:comments) }
-    it { should have_many(:likes) }
-    it { should have_many(:friendships) }
-
-    it { should have_many(:friend_requests_sent).class_name(:Friendship) }
-    it { should have_many(:friend_requests_received).class_name(:Friendship) }
-
-    it { should have_many(:requests_sent_to).through(:friend_requests_sent) }
-    it { should have_many(:requests_received_from).through(:friend_requests_received) }
+RSpec.describe User do
+  let(:subject) do
+    described_class.new(
+      name: 'example',
+      email: 'example@example.com',
+      password: '123456'
+    )
   end
 
   describe 'validations' do
-    it 'is not valid without name' do
-      subject.name = nil
-      expect(subject).to_not be_valid
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:password) }
+    it 'is valid with valid attributes' do
+      expect(subject).to be_valid
     end
-    it { should validate_presence_of(:name) }
+    it 'The name of the user should exist' do
+      subject.name = ''
+      expect(subject).not_to be_valid
+    end
+    it 'The email of the user should exist' do
+      subject.email = ''
+      expect(subject).not_to be_valid
+    end
+  end
+  describe 'Associations', type: :model do
+    it { is_expected.to have_many(:posts) }
+    it { is_expected.to have_many(:comments) }
+    it { is_expected.to have_many(:likes) }
+    it { is_expected.to have_many(:confirmed_friendships) }
+    it { is_expected.to have_many(:pending_friendships) }
+    it { is_expected.to have_many(:inverse_friendships) }
   end
 end

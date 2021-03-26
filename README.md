@@ -4,13 +4,12 @@
 
 ## Built With
 
-- Ruby v2.7.0
-- Ruby on Rails v5.2.4
+-   Ruby v2.7.0
+-   Ruby on Rails v5.2.4
 
 ## Live Demo
 
-TBA
-
+[LINK]()
 
 ## Getting Started
 
@@ -46,38 +45,43 @@ To make sure the linters' checks using Github Actions work properly, you should 
 3. Start working on your milestone as usual.
 4. Open a PR from the `feature/branch` when your work is done.
 
-
-### Usage
-
-Start server with:
-
-```
-    rails server
-```
-
-Open `http://localhost:3000/` in your browser.
-
 ### Run tests
 
-```
-    rpsec --format documentation
-```
-
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
+-   Run `rails test:all` in your terminal to see if all tests are passing
+-   Run `bundle exec rspec spec` to see if Rspec test unit passing
 
 ### Deployment
 
-TBA
+-   Go to respective directory and run
+-   `rails server`
+-   Open `http://localhost:3000/` in your browser.
+
+## Built with
+
+-   Ruby 2.7.0
+-   Ruby on Rails 6.1.0
+-   Bootstrap
+-   Gems used listed in Gemfile
 
 ## Authors
 
-TBA
+👤 **Igors Oleinikovs**
+
+-   GitHub: [Igors78](https://github.com/Igors78)
+-   Twitter: [@oleinikovs](https://twitter.com/oleinikovs)
+-   LinkedIn:
+    [Oleinikovs Igors](https://www.linkedin.com/in/igors-oleinikovs-17a10958/)
+
+👤 **Oluwaseun Iyadi**
+
+-   Github: [@CornerstoneII](https://github.com/CornerstoneII)
+-   Twitter: [@It_Iz_I](https://twitter.com/It_Iz_I)
+-   Linkedin:
+    [Oluwaseun Iyadi](https://www.linkedin.com/in/oluwaseun-iyadi-773584b4/)
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!
-
-Feel free to check the [issues page](issues/).
+Contributions, issues, and feature requests are welcome!
 
 ## Show your support
 
@@ -85,9 +89,9 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-TBA
+-   Ruby documentation
+-   [Michael Hartl](https://www.michaelhartl.com/)
 
 ## 📝 License
 
-TBA
-
+This project is [UNLicense](./LICENSE) licensed.
