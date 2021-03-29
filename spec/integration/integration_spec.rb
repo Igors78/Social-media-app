@@ -74,17 +74,15 @@ RSpec.describe Friendship, type: :feature do
     fill_in 'Email', with: 'Example-1@example.com'
     fill_in 'Password', with: 'password'
     find('input[name="commit"]').click
-    assert_text 'Signed in successfully.'
     visit users_path
-    click_on 'Add friend'
-    assert_text 'Friendship request sent!'
+    click_on 'Befriend'
+    assert_text 'Request sent!'
     click_on 'Sign out'
 
     fill_in 'Email', with: 'jdoe@example.com'
     fill_in 'Password', with: 'password'
     find('input[name="commit"]').click
-    assert_text 'Signed in successfully.'
-    visit friendships_path
+    click_on 'John Doe'
     click_on 'Accept request'
   end
 end
@@ -99,7 +97,6 @@ RSpec.describe Friendship, type: :feature do
     fill_in 'Password confirmation', with: 'password'
     find('input[name="commit"]').click
     click_on 'Sign out'
-
     click_on 'Sign up'
     fill_in 'Name', with: 'Example'
     fill_in 'Email', with: 'Example-1@example.com'
@@ -107,24 +104,19 @@ RSpec.describe Friendship, type: :feature do
     fill_in 'Password confirmation', with: 'password'
     find('input[name="commit"]').click
     click_on 'Sign out'
-
     fill_in 'Email', with: 'Example-1@example.com'
     fill_in 'Password', with: 'password'
     find('input[name="commit"]').click
-    assert_text 'Signed in successfully.'
     visit users_path
-    click_on 'Add friend'
-    assert_text 'Friendship request sent!'
+    click_on 'Befriend'
     click_on 'Sign out'
-
     fill_in 'Email', with: 'jdoe@example.com'
     fill_in 'Password', with: 'password'
     find('input[name="commit"]').click
-    assert_text 'Signed in successfully.'
-    visit friendships_path
+    click_on 'John Doe'
     click_on 'Accept request'
     visit users_path
-    click_on 'Remove'
+    click_on 'Dismiss Friendsip'
     assert_text 'Friendship has been deleted'
   end
 end

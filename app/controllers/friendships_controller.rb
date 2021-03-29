@@ -1,48 +1,57 @@
 class FriendshipsController < ApplicationController
+  before_action :set_friendship, only: %i[create_friendship destroy_friendship]
   before_action :authenticate_user!
-  def index
-    @friendships = current_user.inverse_friendships
-  end
 
-  def create
-    @friendship = Friendship.new(friendship_params)
-
-    if @friendship.save
-      redirect_to users_path, notice: 'Friendship request sent!'
+  def create_friendship
+    if @friendship.nil?
+      @friendship = Friendship.new(user_id: params[:user_id], friend_id: params[:friend_id])
+      if @friendship.save
+        flash.notice = 'Request sent!'
+        redirect_back(fallback_location: root_path)
+      else
+        render :new
+      end
     else
-      flash[:notice] = 'Something went wrong!'
-      render :users
+      flash.notice = 'There is already a friend request pending'
+      redirect_back(fallback_location: root_path)
     end
   end
 
-  def update
-    @friendship = Friendship.find(params[:id])
-    @friendship2 = inverse_params(@friendship)
-
-    @friendship.confirmed = true
-
-    if @friendship.save && @friendship2.save
-      redirect_to friendships_path, notice: 'Friendship request accepted!'
+  def destroy_friendship
+    if @friendship
+      @friendship.destroy
+      flash.notice = 'Friendship has been deleted'
     else
-      flash[:notice] = 'Something went wrong, please try again!'
-      render 'friendships#index'
+      flash.alert = 'Error'
     end
+    redirect_back(fallback_location: root_path)
   end
 
-  def destroy
-    @friendship = Friendship.find(params[:id])
+  def accept_request
+    @friendship = Friendship.find_by(user_id: params[:friend_id],
+                                     friend_id: params[:user_id])
+    @friendship.update(status: true)
+    redirect_back(fallback_location: root_path)
+  end
+
+  def decline_request
+    @friendship = Friendship.find_by(user_id: params[:user_id],
+                                     friend_id: params[:friend_id])
     @friendship.destroy
-
-    redirect_to friendships_path, notice: 'Friendship has been deleted'
+    redirect_back(fallback_location: root_path)
   end
 
   private
 
-  def friendship_params
-    params.require(:friendship).permit(:user_id, :friend_id, :confirmed)
+  def set_friendship
+    @friendship = Friendship.find_by(user_id: params[:user_id],
+                                     friend_id: params[:friend_id]) ||
+                  Friendship.find_by(user_id: params[:friend_id],
+                                     friend_id: params[:user_id])
   end
 
-  def inverse_params(first)
-    Friendship.new(user_id: first.friend_id, friend_id: first.user_id, confirmed: true)
+  # Only allow a list of trusted parameters through.
+  def friendship_params
+    params.require(:friendship).permit(:user_id, :friend_id, :status)
   end
 end

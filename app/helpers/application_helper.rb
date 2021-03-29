@@ -10,33 +10,30 @@ module ApplicationHelper
   def like_or_dislike_btn(post)
     like = Like.find_by(post: post, user: current_user)
     if like
-      link_to('Dislike!', post_like_path(id: like.id, post_id: post.id), method: :delete, id: 'dislike')
+      link_to('Dislike!', post_like_path(id: like.id, post_id: post.id), method: :delete)
     else
-      link_to('Like!', post_likes_path(post_id: post.id), method: :post, id: 'like')
+      link_to('Like!', post_likes_path(post_id: post.id), method: :post)
     end
   end
 
-  def if_notice(notice)
-    result = ''
-    if notice
-      result = content_tag(:div,
-                           content_tag(
-                             :p, notice
-                           ),
-                           class: 'alert-warning p-2 d-flex justify-content-center')
-    end
-    result
+  def active_friends?(friend)
+    Friendship.find_by(user_id: current_user.id,
+                       friend_id: friend.id,
+                       status: true) ||
+      Friendship.find_by(user_id: friend.id,
+                         friend_id: current_user.id,
+                         status: true)
   end
 
-  def if_alert(alert)
-    result = ''
-    if alert
-      result = content_tag(:div,
-                           content_tag(
-                             :p, alert
-                           ),
-                           class: 'alert-danger p-2 d-flex justify-content-center')
-    end
-    result
+  def pending_friends?(friend)
+    Friendship.find_by(user_id: friend.id,
+                       friend_id: current_user.id,
+                       status: false)
+  end
+
+  def friend_requests(friend)
+    Friendship.find_by(user_id: current_user.id,
+                       friend_id: friend.id,
+                       status: false)
   end
 end

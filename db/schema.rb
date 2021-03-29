@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_134641) do
+ActiveRecord::Schema.define(version: 2021_01_14_094642) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 2021_03_22_134641) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "friend_id"
-    t.boolean "confirmed"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "friend_id"
+    t.boolean "status", default: false
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
     t.index ["user_id"], name: "index_friendships_on_user_id"
   end
