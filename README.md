@@ -9,7 +9,7 @@
 
 ## Live Demo
 
-[LINK](https://obscure-basin-58031.herokuapp.com/)
+[STAYINTOUCH](https://obscure-basin-58031.herokuapp.com/)
 
 ## Getting Started
 
@@ -76,8 +76,7 @@ To make sure the linters' checks using Github Actions work properly, you should 
 
 -   Github: [@CornerstoneII](https://github.com/CornerstoneII)
 -   Twitter: [@It_Iz_I](https://twitter.com/It_Iz_I)
--   Linkedin:
-    [Oluwaseun Iyadi](https://www.linkedin.com/in/oluwaseun-iyadi-773584b4/)
+-   Linkedin: [Oluwaseun Iyadi](https://www.linkedin.com/in/oluwaseun-iyadi-773584b4/)
 
 ## 🤝 Contributing
 
@@ -94,4 +93,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [UNLicense](./LICENSE) licensed.
+This project is [unlicense](./LICENSE) licensed.
